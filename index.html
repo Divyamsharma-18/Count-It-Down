@@ -35,3 +35,41 @@
             <button onclick="setCountdown()" class="bg-purple-500 text-white px-4 py-2 rounded-md">Set Countdown</button>
         </div>
     </div>
+
+    <script>
+        let countdownInterval;
+
+        function setCountdown() {
+            const targetDate = document.getElementById('targetDate').value;
+            const targetTime = document.getElementById('targetTime').value;
+            if (!targetDate || !targetTime) {
+                alert('Please select both date and time.');
+                return;
+            }
+
+            const targetDateTime = new Date(`${targetDate}T${targetTime}`);
+            clearInterval(countdownInterval);
+            countdownInterval = setInterval(() => updateCountdown(targetDateTime), 1000);
+        }
+
+        function updateCountdown(targetDateTime) {
+            const now = new Date();
+            const timeDifference = targetDateTime - now;
+
+            if (timeDifference <= 0) {
+                clearInterval(countdownInterval);
+                document.getElementById('timer').innerText = 'Time is up!';
+                return;
+            }
+
+            const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+            document.getElementById('timer').innerText =
+                `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+    </script>
+</body>
+</html>
