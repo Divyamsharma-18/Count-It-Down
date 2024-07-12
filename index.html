@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date Selector with Tailwind CSS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            filter: invert(1);
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-r from-black to-purple-950 h-screen flex justify-center items-center">
+    <div class="container flex flex-col -mt-40 justify-center items-center h-80 w-80">
+        <div class="bg-pink-700 h-20 w-20 rounded-lg mr-56 -mb-8 "></div>
+
+        <div class="bg-white bg-opacity-40 backdrop-blur-lg backdrop-brightness-90 backdrop-saturate-150 rounded-md h-20 w-64 fixed flex items-center justify-center">
+            <div id="timer" class="text-white text-3xl font-mono"></div>
+        </div>
+
+        <div class="bg-purple-500 h-20 w-20 rounded-full ml-56"></div>
+
+        <div class="fixed mt-96 flex flex-col items-center">
+            <div class="flex gap-8 mb-4">
+                <div>
+                    <input type="date" id="targetDate" class="mb-2 mt-2 p-2 bg-gray-200 rounded-md">
+                </div>
+                <div>
+                    <input type="time" id="targetTime" class="mt-2 p-2 bg-gray-200 rounded-md">
+                </div>
+            </div>
+            <button onclick="setCountdown()" class="bg-purple-500 text-white px-4 py-2 rounded-md">Set Countdown</button>
+        </div>
+    </div>
